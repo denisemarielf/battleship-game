@@ -44,32 +44,22 @@ const Gameboard = (coordS1, coordS2, coordS3, coordS4, coordS5) => {
         if (grid[x][y] !== null){
             switch(grid[x][y].ship){
                 case "s1":
-                    console.log("s1")
-                    
                     fleet[0].hit(grid[x][y].position)
                     grid[x][y] = true;
                     break;
                 case "s2":
-                    console.log("s2")
-                    
                     fleet[1].hit(grid[x][y].position)
                     grid[x][y] = true;
                     break;
                 case "s3":
-                    console.log("s3")
-                    
                     fleet[2].hit(grid[x][y].position)
                     grid[x][y] = true;
                     break;
                 case "s4":
-                    console.log("s4")
-                    
                     fleet[3].hit(grid[x][y].position)
                     grid[x][y] = true;
                     break;   
                 case "s5":
-                    console.log("s5")
-                    
                     fleet[4].hit(grid[x][y].position)
                     grid[x][y] = true;
                     break;
@@ -83,7 +73,24 @@ const Gameboard = (coordS1, coordS2, coordS3, coordS4, coordS5) => {
        return fleet.every(ship => ship.isSunk() === true)
     }
 
-     return {grid, receiveAttack, isFleetSunk}
+    const avaliableCoordinates = () => {
+
+        let coordinates = [];
+
+        for(var i = 0; i < grid.length; i++) {
+            for(var j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] !== true && grid[i][j] !== false) {
+                    coordinates.push({x: i, y: j})
+                }
+            }
+        }
+
+        return coordinates;
+    }
+
+     return {grid, receiveAttack, isFleetSunk, avaliableCoordinates}
 }
+
+
 
 module.exports = Gameboard;
