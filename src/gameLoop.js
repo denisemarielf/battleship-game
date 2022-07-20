@@ -1,7 +1,8 @@
 const Gameboard = require("./gameboard");
 const Player = require("./player");
 
-const GameLoop = () => {
+
+const GameLoop = (playerCoordinates) => {
   const setRandomComputerCoordinates = () => {
     const alignmentOptions = ["vertical", "horizontal"];
     const randomNumber = (max) => Math.floor(Math.random() * max);
@@ -20,7 +21,7 @@ const GameLoop = () => {
           position: i,
         };
         coordinatesChosen.push(coordinates);
-        if (coordinates.alignment === "vertical") {
+        if (coordinates.alignment === "horizontal") {
           for (let j = 0; j <= i; j++) {
             let coordinateX = coordinates.x;
             let coordinateY = coordinates.y;
@@ -65,6 +66,9 @@ const GameLoop = () => {
   };
 
   let computerCoordinates = setRandomComputerCoordinates();
+  //const playerCoordinates = playerCoordinates;
+  //let screen = ScreenController
+
 
   const computerGameboard = Gameboard(
     computerCoordinates[0],
@@ -77,11 +81,11 @@ const GameLoop = () => {
   
 
   const playerGameboard = Gameboard(
-    { x: 6, y: 4, alignment: "vertical" },
-    { x: 0, y: 5, alignment: "horizontal" },
-    { x: 2, y: 8, alignment: "vertical" },
-    { x: 9, y: 3, alignment: "horizontal" },
-    { x: 5, y: 1, alignment: "vertical" }
+    playerCoordinates[0],
+    playerCoordinates[1],
+    playerCoordinates[2],
+    playerCoordinates[3],
+    playerCoordinates[4]
   );
 
   const getPlayerGameboard = () => {
@@ -110,16 +114,21 @@ const GameLoop = () => {
     if (currentPlayer === players[0]) {
       humanPlayer.playerAttack(x, y);
       if (computerGameboard.isFleetSunk() === true) {
-        console.log("player won");
+        console.log("loop player won")
+        return "player won"
       } else {
         switchPlayer();
-        computerPlayer.computerAttack();
-      }
-      if (playerGameboard.isFleetSunk() === true) {
-        console.log("computer won");
+        computerPlayer.computerAttack();      
+        if (playerGameboard.isFleetSunk() === true) {
+          console.log("computer won")
+        return "computer won"
       } else {
         switchPlayer();
+        console.log("loop continue")
+        return "continue"
       }
+      }
+
     }
   };
 
