@@ -1,31 +1,28 @@
-        //{name: length: 5, x: 0, y: 0, alignment: vertical}
-
 const Ship = (shipLength, shipX, shipY, shipAlignment) => {
-
-  const name = "s"+shipLength;
+  const name = "s" + shipLength;
   const length = shipLength;
   const x = shipX;
   const y = shipY;
   const alignment = shipAlignment;
 
-  let positions = []
+  let positions = [];
 
-  for (let i = 0; i < shipLength; i++){
-    positions.push(false)
+  for (let i = 0; i < shipLength; i++) {
+    positions.push(false);
   }
-  
+
   const hit = (position) => {
     positions[position] = true;
-  }
+  };
 
   const isSunk = () => {
-    const status = positions.every(position => {
-      return position === true}
-      )
+    const status = positions.every((position) => {
+      return position === true;
+    });
     return status;
-  }
+  };
 
-  return {hit, isSunk, positions, name, length, x, y, alignment}
+  return { hit, isSunk, positions, name, length, x, y, alignment };
 };
 
 module.exports = Ship;

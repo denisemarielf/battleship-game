@@ -1,7 +1,6 @@
 const Gameboard = require("./gameboard");
 const Player = require("./player");
 
-
 const GameLoop = (playerCoordinates) => {
   const setRandomComputerCoordinates = () => {
     const alignmentOptions = ["vertical", "horizontal"];
@@ -66,9 +65,6 @@ const GameLoop = (playerCoordinates) => {
   };
 
   let computerCoordinates = setRandomComputerCoordinates();
-  //const playerCoordinates = playerCoordinates;
-  //let screen = ScreenController
-
 
   const computerGameboard = Gameboard(
     computerCoordinates[0],
@@ -77,8 +73,6 @@ const GameLoop = (playerCoordinates) => {
     computerCoordinates[3],
     computerCoordinates[4]
   );
-
-  
 
   const playerGameboard = Gameboard(
     playerCoordinates[0],
@@ -90,6 +84,10 @@ const GameLoop = (playerCoordinates) => {
 
   const getPlayerGameboard = () => {
     return playerGameboard.grid;
+  };
+
+  const getPlayerAvaliableCoordinates = () => {
+    return playerGameboard.avaliableCoordinates();
   };
 
   const getComputerGameboard = () => {
@@ -114,26 +112,23 @@ const GameLoop = (playerCoordinates) => {
     if (currentPlayer === players[0]) {
       humanPlayer.playerAttack(x, y);
       if (computerGameboard.isFleetSunk() === true) {
-        console.log("loop player won")
-        return "player won"
+        return "player won";
       } else {
         switchPlayer();
-        computerPlayer.computerAttack();      
+        computerPlayer.computerAttack();
         if (playerGameboard.isFleetSunk() === true) {
-          console.log("computer won")
-        return "computer won"
-      } else {
-        switchPlayer();
-        console.log("loop continue")
-        return "continue"
+          return "computer won";
+        } else {
+          switchPlayer();
+          return "continue";
+        }
       }
-      }
-
     }
   };
 
   return {
     getPlayerGameboard,
+    getPlayerAvaliableCoordinates,
     getComputerGameboard,
     getCurrentPlayer,
     playRound,
