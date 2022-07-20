@@ -1,0 +1,434 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  background-color: #e5e5e5;
+  height: 60px;
+  text-align: center;
+  width: 100%;
+  font-family: "Squada One", cursive;
+  text-transform: uppercase;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-icon {
+  width: 50px;
+  padding-left: 20px;
+}
+
+.main-game-container {
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  display: none;
+  height: calc(100vh - 60px);
+}
+
+.main-game-container-player-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: "Karla", sans-serif;
+  font-weight: bold;
+  gap: 20px;
+  min-width: 600px;
+}
+
+.main-game-player-name {
+  width: 80%;
+  height: 40px;
+  background-color: #ea2939;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 5px;
+  font-size: larger;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-game-player-opponent {
+  background-color: #717c96;
+}
+
+.main-game-grid-letters {
+  display: grid;
+  grid-template-columns: repeat(10, 43px);
+  width: 430px;
+  height: 40px;
+  grid-area: letters;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  color: #9096a8;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.main-game-grid-numbers {
+  display: grid;
+  grid-template-rows: repeat(10, 43px);
+  height: 430px;
+  width: 40px;
+  align-items: center;
+  grid-area: numbers;
+  justify-items: center;
+  color: #9096a8;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.main-game-container-player {
+  grid-area: grid;
+}
+
+.main-game-grid {
+  display: grid;
+  grid-template-columns: 40px 430px;
+  grid-template-rows: 40px 430px;
+  grid-template-areas:
+    ". letters"
+    "numbers grid";
+}
+
+.main-game-container-computer {
+  grid-area: grid-opponent;
+}
+
+.main-game-grid-opponent {
+  display: grid;
+  grid-template-columns: 40px 430px;
+  grid-template-rows: 40px 430px;
+  grid-template-areas:
+    ". letters"
+    "numbers grid-opponent";
+}
+
+.main-game-container-player,
+.main-game-container-computer {
+  border: 1px solid transparent;
+  border-radius: 1px;
+  height: 430px;
+  width: 430px;
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+  gap: 3px;
+}
+
+.main-modal-start-game {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+#main-game-container-player {
+  border-right: 2px solid #e5e5e5;
+}
+
+.grid-item {
+  border: 1px solid transparent;
+  max-height: 40px;
+  max-width: 40px;
+  border-radius: 5px;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-game-container-computer > .grid-item:hover {
+  border: 2px dotted #ff1e5c;
+  cursor: pointer;
+}
+
+.grid-item[data-status="user-ship"] {
+  background-color: #9096a8;
+  color: #717c96;
+}
+
+.grid-item[data-status="free"] {
+  background-color: #dff4ff;
+}
+
+.grid-item[data-status="hit"] {
+  color: #ff1e5c;
+  background-color: #9096a8;
+}
+
+.grid-item[data-status="miss"] {
+  color: #8baeff;
+  background-color: #dff4ff;
+}
+
+.main-game-container-computer > .grid-item[data-status="free"] {
+  background-color: #e9e7e9;
+}
+
+.main-game-container-computer > .grid-item[data-status="hit"] {
+  color: #ff1e5c;
+  background-color: #e9e7e9;
+}
+
+.main-game-container-computer > .grid-item[data-status="miss"] {
+  color: grey;
+  background-color: #e9e7e9;
+}
+
+.main-modal-start-game-container {
+  display: grid;
+  grid-template-columns: 40% 50%;
+  grid-template-rows: 45% 45% 10%;
+  grid-template-areas:
+    "ships grid"
+    "ships grid"
+    "button button";
+  font-family: "Karla", sans-serif;
+  min-height: calc(100vh - 60px);
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+  width: 80vw;
+  justify-items: center;
+}
+
+.start-game-ships-container {
+  grid-area: ships;
+}
+
+.main-game-grid {
+  grid-area: grid;
+}
+
+.main-modal-start-game-button,
+.main-modal-end-game-button {
+  grid-area: button;
+  width: 200px;
+  justify-self: center;
+  background-color: #ff1e5c;
+  border: 1px solid transparent;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  font-size: larger;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  font-family: "Squada One", cursive;
+}
+
+.main-modal-start-game-button:hover,
+.main-modal-end-game-button:hover {
+  background-color: #ff3c73;
+}
+
+.main-modal-start-game-grid {
+  border-radius: 1px;
+  height: 430px;
+  width: 430px;
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+  gap: 3px;
+  grid-area: grid;
+}
+
+.start-grid-item {
+  background-color: #dff4ff;
+  border-radius: 5px;
+}
+
+.fleet-container > div > p {
+  font-weight: bold;
+}
+
+.start-game-ships-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+small {
+  padding-top: 20px;
+  color: #ea2939;
+  display: none;
+}
+
+.start-game-grid-container {
+  width: 70%;
+  padding: 20px;
+}
+
+.main-game-grid-start {
+  display: grid;
+  grid-template-columns: 40px 430px;
+  grid-template-rows: 40px 430px;
+  grid-template-areas:
+    ". letters"
+    "numbers grid";
+}
+
+.ship {
+  background-color: #9096a8;
+  color: #717c96;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 50px;
+
+  flex-wrap: wrap;
+}
+
+.ship > div {
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.fleet-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 340px;
+}
+
+.fleet-container > div {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+ul {
+  padding: 20px;
+}
+
+.ship[data-type="ghost"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fleet-container > div > :nth-child(3) {
+  background-color: #8baeff;
+  display: none;
+}
+
+#ship-1[data-position="vertical"] {
+  width: 43px;
+  height: 43px;
+}
+
+#ship-1[data-position="horizontal"] {
+  width: 43px;
+  height: 40px;
+}
+
+#ship-2[data-position="vertical"] {
+  width: 40px;
+  height: 86px;
+}
+
+#ship-2[data-position="horizontal"] {
+  width: 86px;
+  height: 40px;
+}
+
+#ship-3[data-position="horizontal"] {
+  width: 129px;
+  height: 40px;
+}
+
+#ship-3[data-position="vertical"] {
+  width: 40px;
+  height: 129px;
+}
+
+#ship-4[data-position="horizontal"] {
+  width: 172px;
+  height: 40px;
+}
+
+#ship-4[data-position="vertical"] {
+  width: 40px;
+  height: 172px;
+}
+
+#ship-5[data-position="horizontal"] {
+  height: 40px;
+  width: 215px;
+}
+
+#ship-5[data-position="vertical"] {
+  height: 215px;
+  width: 40px;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+main {
+  position: relative;
+}
+
+#main-modal-end-game {
+  width: 100vw;
+  min-height: calc(100vh - 60px);
+  background-color: rgba(255, 255, 255, 0.678);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  top: 0;
+}
+
+.main-modal-end-game > div > h3 {
+  text-transform: uppercase;
+  font-family: "Squada One", cursive;
+  font-size: xx-large;
+}
+
+.main-modal-end-game > div {
+  background-color: white;
+  height: 200px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  border: 3px dotted #ff3c73;
+}
+
+.end-game-message {
+  font-family: "Karla", sans-serif;
+  font-size: larger;
+}
