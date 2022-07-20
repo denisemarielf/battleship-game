@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./images/boat.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+    <title>Battleship</title>
+</head>
+
+<body>
+    <header class="header">
+        <img class="header-icon" src="./images/boat.png" alt="boat-icon">
+        <h1>Battleship</h1>
+
+    </header>
+    <main class="main">
+        <div class="main-game-container">
+            <div class="main-game-container-player-section" id="main-game-container-player">
+                <span class="main-game-player-name">Your fleet</span>
+                <div class="main-game-grid">
+                    <div class="main-game-grid-letters">
+                        <div>A</div>
+                        <div>B</div>
+                        <div>C</div>
+                        <div>D</div>
+                        <div>E</div>
+                        <div>F</div>
+                        <div>G</div>
+                        <div>H</div>
+                        <div>I</div>
+                        <div>J</div>
+                    </div>
+                    <div class="main-game-grid-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                    </div>
+                    <div class="main-game-container-player"></div>
+                </div>
+            </div>
+            <div class="main-game-container-player-section">
+                <span class="main-game-player-name" id="main-game-player-opponent">Opponent</span>
+                <div class="main-game-grid-opponent">
+                    <div class="main-game-grid-letters">
+                        <div>A</div>
+                        <div>B</div>
+                        <div>C</div>
+                        <div>D</div>
+                        <div>E</div>
+                        <div>F</div>
+                        <div>G</div>
+                        <div>H</div>
+                        <div>I</div>
+                        <div>J</div>
+                    </div>
+                    <div class="main-game-grid-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                    </div>
+                    <div class="main-game-container-computer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main-modal-start-game">
+            <div class="main-modal-start-game-container">
+                <div class="start-game-ships-container">
+                    <h3>Place your ships</h3>
+                    <ul>
+                        <li>Drag ships to their position on the grid</li>
+                        <li>Click on the ships to change their orientation.</li>
+                        <li>Remember that ships can't be touching each other on either of the sides, including corner
+                            edges.</li>                     
+                    </ul>
+
+                    <div class="fleet-container">
+                        <div class="ship-1">
+                            <p>Frigate</p>
+                            <div draggable="true" id="ship-1" data-position="horizontal" class="ship" data-type="real">
+                                <div>⬤</div>
+                            </div>
+                            <div class="ship" data-type="ghost">
+                                <div>⬤</div>
+                            </div>
+                        </div>
+                        <div class="ship-2">
+                            <p>Destroyer</p>
+                            <div draggable="true" id="ship-2" data-position="horizontal" class="ship" data-type="real">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                            <div class="ship" data-type="ghost">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                        </div>
+                        <div class="ship-3">
+                            <p>Cruiser</p>
+                            <div draggable="true" id="ship-3" data-position="horizontal" class="ship" data-type="real">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                            <div class="ship" data-type="ghost">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                        </div>
+                        <div class="ship-4">
+                            <p>Battleship</p>
+                            <div draggable="true" id="ship-4" data-position="horizontal" class="ship" data-type="real">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                            <div class="ship" data-type="ghost">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                        </div>
+                        <div class="ship-5">
+                            <p>Aircraft Carrier</p>
+                            <div draggable="true" id="ship-5" data-position="horizontal" class="ship" data-type="real">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                            <div class="ship" data-type="ghost">
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                                <div>⬤</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <small>ERROR: Ships have not been placed/are misplaced</small>
+                </div>
+
+                <div class="main-game-grid">
+                    <div class="main-game-grid-letters">
+                        <div>A</div>
+                        <div>B</div>
+                        <div>C</div>
+                        <div>D</div>
+                        <div>E</div>
+                        <div>F</div>
+                        <div>G</div>
+                        <div>H</div>
+                        <div>I</div>
+                        <div>J</div>
+                    </div>
+                    <div class="main-game-grid-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                    </div>
+                    <div class="main-modal-start-game-grid"></div>
+
+                </div>
+
+                <button class="main-modal-start-game-button">Start</button>
+
+            </div>
+
+        </div>
+        <div class="main-modal-end-game" id="main-modal-end-game">
+            <div>
+                <h3>Game over</h3>
+                <p class="end-game-message"></p>
+                <button class="main-modal-end-game-button">Play again</button>
+            </div>
+    </main>
+</body>
+
+</html>
